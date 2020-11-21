@@ -1,0 +1,191 @@
+<script src="https://ajax.googleapis.com/ajax/libs/jquery/1.10.2/jquery.min.js"></script>
+
+<style>
+.trialDiv {
+	border: 2px solid gray;
+	padding-left: 20px;
+	width: 500px;
+	margin: 0 auto;
+	font-family: Arial, Helvetica;
+	font-size: 14pt;
+	display: none;
+}
+
+#submitButton {
+	display: none;
+}
+
+#instructions {
+	width: 300px;
+	margin: 0 auto;
+	font-family: Arial, Helvetica;
+	font-size: 18pt;
+	margin-top: 50px;
+	text-align: center;
+  color: orange;
+}
+
+body {
+	font-family: Arial, Helvetica;
+	font-size: 14pt;
+}
+
+#startExperiment {
+	color: white;
+	text-decoration: none;
+}
+
+#startExperimentButton {
+	width: 200px;
+	text-align: center;
+	border: 4px outset gray;
+	background: gray;
+	padding: 5px;
+	margin: 0 auto;
+}
+
+
+#trialImage1 {
+  -webkit-transform: rotate(180deg);
+  -moz-transform: rotate(180deg);
+  -ms-transform: rotate(180deg);
+  -o-transform: rotate(180deg);
+  transform: rotate(180deg);
+}
+
+/*
+
+https://ibb.co/YT7bR2G
+https://ibb.co/n1p4n3W
+https://ibb.co/n6ZnG5k
+https://ibb.co/LSkMDG5
+
+https://i.ibb.co/ZdL3RZm/Slide1.jpg
+https://i.ibb.co/dj1LTzK/Slide2.jpg
+https://i.ibb.co/YdgJyDr/Slide3.jpg
+https://i.ibb.co/WpWsxn1/Slide4.jpg
+
+*/
+
+
+</style>
+
+<div id="instructions">
+<p> Determine whether there is a Landolt C with a gap pointing upwards.
+<div id="startExperimentButton">
+<a href="#" id="startExperiment"> Start Experiment </a>
+</div>
+</p>
+</div>
+
+<div id="trial1" class="trialDiv">
+<p><img id="trialImage1" src="http://timbrady.org/turk/images/car.jpg" width="100" data-rotate="90">
+</p>
+</div>
+
+<div id="debug">
+	<p> </p>
+</div>
+
+
+<script>
+var trialOrder = shuffle([1]);
+var curTrial = 0;
+var nTrials = 4;
+var startTrialTime;
+
+var data = [['']];
+var element = document.getElementById('debug');
+
+var clientWidth = $("#trial1").width()/2;
+var clientHeight = $("#trial1").height()/2;
+
+var pi = Math.PI;
+
+function buttonClicked() {
+	var curTime = new Date();
+	var rt = curTime - startTrialTime;
+	$('#reactionTime' + trialOrder[curTrial]).val(rt);
+	$('trialorder' + trialOrder[curTrial]).val(curTrial)
+	$('#trial' + trialOrder[curTrial]).hide();
+
+  data[curTrial]=[curTrial,trialOrder[curTrial],rt];
+
+
+
+	curTrial++;
+
+	if (curTrial >= nTrials) {
+		$('#submitButton').show();
+	} else {
+		showTrial(trialOrder[curTrial]);
+		startTrialTime = new Date();
+	}
+}
+
+
+function showTrial(whichImage) {
+	setTimeout(function () {
+		$('#trial' +  whichImage).show();
+	},200);
+}
+
+function showFirstTrial(){
+	showTrial(trialOrder[0]);
+	startTrialTime = new Date();
+	$('#instructions').hide();
+}
+
+var mouseXY = {};
+$('#trial1').on( "mousemove", function( event ) { /* was document */
+	mouseXY.X = event.offsetX;
+	mouseXY.Y = event.offsetY;
+});
+
+var iCow = $("#trialImage1");
+var prevXY = {X: null, Y: null};
+var cowInterval = setInterval(function()
+
+{
+
+
+	if(prevXY.Y != mouseXY.Y || prevXY.X != mouseXY.X && (prevXY.Y != null || prevXY.X != null)) {
+
+		var cowXY = iCow.position();
+		var diffX = cowXY.left - mouseXY.X;
+		var diffY = cowXY.top - mouseXY.Y;
+		var tan = diffY / diffX;
+
+		var atan = Math.atan(tan)* 180 / Math.PI;;
+		if(diffY > 0 && diffX > 0) {
+
+			atan += 180;
+		}
+		else if(diffY < 0 && diffX > 0) {
+
+			atan -= 180;
+		}
+
+		prevXY.X = mouseXY.X;
+		prevXY.Y = mouseXY.Y;
+		iCow.css({transform: "rotate(" + atan + "deg)"});
+	}
+}, 10);
+
+
+
+
+/* Fisher-Yates shuffle */
+function shuffle(o){
+    for(var j, x, i = o.length; i; j = Math.floor(Math.random() * i), x = o[--i], o[i] = o[j], o[j] = x);
+    return o;
+}
+
+/* Wait for clicks*/
+$('#startExperiment').click(showFirstTrial);
+$('.responseButton').click(buttonClicked);
+
+</script>
+
+<!-- do not put this on turk -->
+<input type="submit" id="submitButton">
