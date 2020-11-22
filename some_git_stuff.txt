@@ -1,0 +1,6 @@
+git status
+git add --all
+git status
+git commit -m "message stuff add here"
+git status
+git push
