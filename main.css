@@ -1,0 +1,40 @@
+
+
+div {
+  width: 100px;
+  height: 100px;
+  border: 1px solid red;
+  border-radius: 100%;
+  display: inline-block;
+}
+
+#puppyone {
+  background-image: url("Owl_picture4.jpg");
+  background-size: cover;
+  background-repeat: no-repeat;
+}
+
+img {
+  border: 10px groove orangered;
+  padding: 10px;
+  width: 100px;
+  -webkit-box-sizing: border-box;
+  box-sizing: border-box;
+}
+
+
+.dogtwo {
+  border: 10px double orangered;
+}
+
+/* #header2 {
+  color: blue;
+} */
+
+
+
+
+
+
+
+/* comments. Cool */
