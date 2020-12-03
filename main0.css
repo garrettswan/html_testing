@@ -35,6 +35,18 @@ div:hover {
   display: inline-block;
 }
 
+li:nth-child(odd) {
+  color: red;
+}
+li:nth-child(even) {
+  color: green;
+}
+
+li:nth-child(even)::first-letter {
+  font-size: 25px;
+}
+
+
 /* #header2 {
   color: blue;
 } */
