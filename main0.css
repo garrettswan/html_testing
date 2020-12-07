@@ -1,15 +1,25 @@
+html {
+  background-color: rgb(100,0,0);
+}
 
+body {
+  background-color: rgb(150,150,150);
+  margin: 0 auto;
+  width: 70%;
+}
 
-div {
-  width: 100px;
-  height: 100px;
-  border: 1px solid red;
+#Name_header {
+  padding: 10px;
+  margin: 20px;
+  width: 300px;
+  text-align: center;
 }
 
 #Some_details {
   padding: 10px;
   margin: 20px;
   width: 300px;
+  text-align: center;
 }
 
 .Picture {
@@ -18,11 +28,9 @@ div {
   width: 200px;
   -webkit-box-sizing: border-box;
   box-sizing: border-box;
-  display: inline-block;
-}
-
-div:hover {
-  color: green;
+  display: block;
+  margin-left: auto;
+  margin-right: auto;
 }
 
 #link1,#link2,#link3 {
@@ -33,6 +41,13 @@ div:hover {
   margin: 0 auto;
   box-sizing: border-box;
   display: inline-block;
+  width: 100px;
+  height: 100px;
+  border: 1px solid red;
+}
+
+#link1:hover,#link2:hover,#link3:hover {
+  color:green;
 }
 
 li:nth-child(odd) {
