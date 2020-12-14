@@ -9,9 +9,11 @@
 
 #Header1 {
   border: 5px groove red;
+  text-decoration: none;
 }
 
 #Main_Text {
+  width: 500px;
   font-size: 1.25rem;
   font-weight: normal;
   line-height: 1.5rem;
