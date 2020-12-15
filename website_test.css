@@ -1,11 +1,33 @@
 
+* {
+  border: 1px dashed hotpink;
+}
 
+#WebsiteLists {
+  background-color: red;
+  width:500px;
+  height: auto
+  box-sizing: border-box;
+  align-items: center;
+}
 
 /* All Links hae */
-.Links {
-  border: 1px solid black;
-  width: 0 auto;
-  height: 50px;
+.Links_list {
+  /* border: 1px solid black; */
+  width: auto;
+  height: auto;
   font-size: 24px;
-  b
+  /* list-style: outside none none; */
+  display: inline-block
+}
+
+.Links{
+  padding: 5px;
+  border: 2px;
+  display: inline-block;
+  text-decoration: none;
+}
+
+.Links:hover {
+  background-color: green;
 }
