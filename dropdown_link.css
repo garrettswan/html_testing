@@ -1,43 +1,40 @@
-div {
-  background-color: green;
-}
 
 div a {
   text-decoration: none;
-  color: white;
   font-size: 20px;
   padding: 15px;
   display:inline-block;
 }
 
-ul {
+.DDLists {
   display: inline;
   margin: 0;
   padding: 0;
 }
 
-ul li {
+.DDLists .DDListItem {
   display: inline-block;
 }
-ul li:hover {
+.DDLists .DDListItem:hover {
   background: #555;
 }
-ul li:hover ul {
+.DDLists .DDListItem:hover .DDLists {
   display: block;
+  border-style: solid;
 }
 
-ul li ul {
+.DDLists .DDListItem .DDLists {
   position: absolute;
   width: 200px;
   display: none;
 }
-ul li ul li {
+.DDLists .DDListItem .DDLists .DDListItem {
   background: #555;
   display: block;
 }
-ul li ul li a {
+.DDLists .DDListItem .DDLists .DDListItem .DDListItemRef {
   display:block !important;
 }
-ul li ul li:hover {
+.DDLists .DDListItem .DDLists .DDListItem:hover {
   background: #666;
 }
